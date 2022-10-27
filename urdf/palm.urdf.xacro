@@ -1,12 +1,19 @@
 <?xml version="1.0"?>
-<!--
-  Copyright (c) 2014, PAL Robotics, S.L.
-  All rights reserved.
+<!-- 
+Copyright (c) 2022 PAL Robotics S.L. All rights reserved.
 
-  This work is licensed under the Creative Commons Attribution 4.0 International License.
-  To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0 or send a letter to
-  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
--->
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ -->
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
@@ -23,13 +30,12 @@
     <joint name="${name}_joint" type="fixed">
       <parent link="${parent}" />
       <child link="${name}_link" />
-      <insert_block name="origin" />
+      <xacro:insert_block name="origin" />
     </joint>
 
     <link name="${name}_link">
       <inertial>
         <origin xyz="0.0641 -0.0022 0.0021" rpy="0 0 0" />
-        <!-- NOTE: Less than total palm mass of 0.598kg because actuator masses are specified separately -->
         <mass value="0.4" />
         <inertia ixx="0.000305100" ixy="0.000005037" ixz="0.000015302"
                  iyy="0.000811920" iyz="0.000007622" izz="0.000655851" />

@@ -1,20 +1,27 @@
 <?xml version="1.0"?>
-<!--
-  Copyright (c) 2014, PAL Robotics, S.L.
-  All rights reserved.
+<!-- 
+Copyright (c) 2022 PAL Robotics S.L. All rights reserved.
 
-  This work is licensed under the Creative Commons Attribution 4.0 International License.
-  To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0 or send a letter to
-  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
--->
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ -->
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- Thumb actuator -->
   <xacro:macro name="thumb_actuator" params="name parent *origin">
     <xacro:actuator_impl parent="${parent}" name="${name}">
-      <insert_block name="origin" />
-      <limit lower="${-150 * deg_to_rad}" upper="${360 * deg_to_rad}" effort="2.0" velocity="3.35" /> <!-- TODO: Tune effort -->
+      <xacro:insert_block name="origin" />
+      <limit lower="${-150 * deg_to_rad}" upper="${360 * deg_to_rad}" effort="2.0" velocity="3.35" />
       <safety_controller k_position="20"
                          k_velocity="20"
                          soft_lower_limit="${-150.0 * deg_to_rad}"
@@ -25,8 +32,8 @@
   <!-- Index actuator -->
   <xacro:macro name="index_actuator" params="name parent *origin">
     <xacro:actuator_impl parent="${parent}" name="${name}">
-      <insert_block name="origin" />
-      <limit lower="${-175 * deg_to_rad}" upper="${390 * deg_to_rad}" effort="2.0" velocity="3.35" /> <!-- TODO: Tune effort -->
+      <xacro:insert_block name="origin" />
+      <limit lower="${-175 * deg_to_rad}" upper="${390 * deg_to_rad}" effort="2.0" velocity="3.35" />
       <safety_controller k_position="20"
                          k_velocity="20"
                          soft_lower_limit="${-175.0 * deg_to_rad}"
@@ -37,8 +44,8 @@
   <!-- Middle, ring, little (mrl) actuator -->
   <xacro:macro name="mrl_actuator" params="name parent *origin">
     <xacro:actuator_impl parent="${parent}" name="${name}">
-      <insert_block name="origin" />
-      <limit lower="${-145 * deg_to_rad}" upper="${530 * deg_to_rad}" effort="2.0" velocity="3.56" /> <!-- TODO: Tune effort -->
+      <xacro:insert_block name="origin" />
+      <limit lower="${-145 * deg_to_rad}" upper="${530 * deg_to_rad}" effort="2.0" velocity="3.56" />
       <safety_controller k_position="20"
                          k_velocity="20"
                          soft_lower_limit="${-145 * deg_to_rad}"
@@ -60,17 +67,17 @@
     <joint name="${name}_joint" type="revolute">
       <parent link="${parent}" />
       <child link="${name}_link" />
-      <insert_block name="origin" />
+      <xacro:insert_block name="origin" />
       <axis xyz="0 0 1" />
-      <insert_block name="limit" />
-      <dynamics friction="0.0" damping="0.5"/> <!-- TODO: Tune -->
-      <insert_block name="safety_controller" />
+      <xacro:insert_block name="limit" />
+      <dynamics friction="0.0" damping="0.5"/>
+      <xacro:insert_block name="safety_controller" />
     </joint>
 
     <link name="${name}_link">
       <inertial>
         <origin xyz="0 0 0" rpy="0 0 0" />
-        <mass value="0.05" /> 
+        <mass value="0.05" />
         <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001" /> <!--To stabilize simulation-->
       </inertial>
       <visual>

@@ -1,12 +1,19 @@
 <?xml version="1.0"?>
-<!--
-  Copyright (c) 2014, PAL Robotics, S.L.
-  All rights reserved.
+<!-- 
+Copyright (c) 2022 PAL Robotics S.L. All rights reserved.
 
-  This work is licensed under the Creative Commons Attribution 4.0 International License.
-  To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0 or send a letter to
-  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
--->
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ -->
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
@@ -17,14 +24,14 @@
   <!--Constants-->
   <xacro:property name="thumb_abd_min"   value="${  0 * deg_to_rad}" />
   <xacro:property name="thumb_abd_max"   value="${ 90 * deg_to_rad}" />
-  <xacro:property name="finger_abd_min"  value="${-30 * deg_to_rad}" /> <!--TODO: Check-->
-  <xacro:property name="finger_abd_max"  value="${ 30 * deg_to_rad}" /> <!--TODO: Check-->
+  <xacro:property name="finger_abd_min"  value="${-30 * deg_to_rad}" />
+  <xacro:property name="finger_abd_max"  value="${ 30 * deg_to_rad}" />
   <xacro:property name="finger_flex_min" value="${  0 * deg_to_rad}" />
   <xacro:property name="finger_flex_max" value="${ 45 * deg_to_rad}" />
-  <xacro:property name="finger_max_vel"  value="2.0" />                 <!--TODO: Check-->
-  <xacro:property name="finger_max_eff"  value="2.0" />                 <!--TODO: Check-->
-  <xacro:property name="finger_friction" value="0.0" />                 <!--TODO: Check-->
-  <xacro:property name="finger_damping"  value="0.5" />                 <!--TODO: Check-->
+  <xacro:property name="finger_max_vel"  value="2.0" />
+  <xacro:property name="finger_max_eff"  value="2.0" />
+  <xacro:property name="finger_friction" value="0.0" />
+  <xacro:property name="finger_damping"  value="0.5" />
 
   <xacro:property name="finger_d1"  value="0.009" />
   <xacro:property name="finger_d2"  value="0.013" />
@@ -48,7 +55,7 @@
   <xacro:macro name="finger" params="name parent reflect *origin">
     <!--Abductor-->
     <xacro:finger_abd parent="${parent}" name="${name}_abd" reflect="${reflect}">
-      <insert_block name="origin" />
+      <xacro:insert_block name="origin" />
     </xacro:finger_abd>
 
     <!--First flexor-->
@@ -92,7 +99,7 @@
   <xacro:macro name="thumb" params="name parent reflect *origin">
     <!--Abductor-->
     <xacro:thumb_abd parent="${parent}" name="${name}_abd" reflect="${reflect}">
-      <insert_block name="origin" />
+      <xacro:insert_block name="origin" />
     </xacro:thumb_abd>
 
     <!--First flexor-->
@@ -127,7 +134,7 @@
     <joint name="${name}_joint" type="revolute">
       <parent link="${parent}" />
       <child link="${name}_link" />
-      <insert_block name="origin" />
+      <xacro:insert_block name="origin" />
       <axis xyz="0 0 1" />
       <limit lower="${finger_abd_min}" upper="${finger_abd_max}" effort="${finger_max_eff}" velocity="${finger_max_vel}" />
       <dynamics friction="${finger_friction}" damping="${finger_damping}"/>
@@ -171,7 +178,7 @@
     <joint name="${name}_joint" type="revolute">
       <parent link="${parent}" />
       <child link="${name}_link" />
-      <insert_block name="origin" />
+      <xacro:insert_block name="origin" />
       <axis xyz="0 0 1" />
       <limit lower="${thumb_abd_min}" upper="${thumb_abd_max}" effort="${finger_max_eff}" velocity="${finger_max_vel}" />
       <dynamics friction="${finger_friction}" damping="${finger_damping}"/>
@@ -216,7 +223,7 @@
     <joint name="${name}_joint" type="revolute">
       <parent link="${parent}" />
       <child link="${name}_link" />
-      <insert_block name="origin" />
+      <xacro:insert_block name="origin" />
       <axis xyz="0 0 1" />
       <limit lower="${finger_flex_min}" upper="${finger_flex_max}" effort="${finger_max_eff}" velocity="${finger_max_vel}" />
       <dynamics friction="${finger_friction}" damping="${finger_damping}"/>
@@ -225,7 +232,7 @@
     <link name="${name}_link">
       <inertial>
         <origin xyz="${finger_d2 / 2.0} 0 0" rpy="0 0 0" />
-        <mass value="0.01" /> <!--TODO: can we make it zero and still have a stable dynamic simulation?-->
+        <mass value="0.01" />
         <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001" /> <!-- To stabilize simulation -->
       </inertial>
       <visual>
@@ -262,7 +269,7 @@
     <joint name="${name}_joint" type="revolute">
       <parent link="${parent}" />
       <child link="${name}_link" />
-      <insert_block name="origin" />
+      <xacro:insert_block name="origin" />
       <axis xyz="0 0 1" />
       <limit lower="${finger_flex_min}" upper="${finger_flex_max}" effort="${finger_max_eff}" velocity="${finger_max_vel}" />
       <dynamics friction="${finger_friction}" damping="${finger_damping}"/>
@@ -308,7 +315,7 @@
     <joint name="${name}_joint" type="revolute">
       <parent link="${parent}" />
       <child link="${name}_link" />
-      <insert_block name="origin" />
+      <xacro:insert_block name="origin" />
       <axis xyz="0 0 1" />
       <limit lower="${finger_flex_min}" upper="${finger_flex_max}" effort="${finger_max_eff}" velocity="${finger_max_vel}" />
       <dynamics friction="${finger_friction}" damping="${finger_damping}"/>

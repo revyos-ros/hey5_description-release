@@ -2,6 +2,58 @@
 Changelog for package hey5_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+3.0.0 (2022-10-26)
+------------------
+* Merge branch 'linters' into 'humble-devel'
+  add linters
+  See merge request robots/hey5_description!7
+* CONTRIBUTING.md
+* add linters
+* Merge branch 'update_copyright' into 'humble-devel'
+  update copyright and license
+  See merge request robots/hey5_description!6
+* restore original LICENSE
+* rename LICENSE
+* update copyright and license
+* Merge branch 'update_maintainers' into 'humble-devel'
+  update maintainers
+  See merge request robots/hey5_description!5
+* update maintainers
+* Merge branch 'migrate_gazebo_plugin_underactuated_finger' into 'foxy-devel'
+  Migrate gazebo plugin underactuated finger
+  See merge request robots/hey5_description!4
+* change pid gains values
+* add pid_gains to urdf
+* Remove comments to workaround https://github.com/ros2/launch_ros/issues/214
+* package.xml and CMakeLists.txt in ros2 format
+* Contributors: Jordan Palacios, Noel Jimenez, cescfolch, victor
+
+1.0.3 (2019-04-15)
+------------------
+* Fix xacro warnings
+* Contributors: Victor Lopez
+
+1.0.2 (2018-04-13)
+------------------
+* Merge branch 'add-tool-link' into 'master'
+  Add hand_tool_link
+  See merge request robots/hey5_description!3
+* Add hand_tool_link
+* Contributors: Hilario Tome, Victor Lopez
+
+1.0.1 (2018-01-15)
+------------------
+* Merge branch 'fix-reemc' into 'master'
+  Fix hey5 hand for REEM-C robot
+  See merge request !2
+* Fix hay5 hand for REEM-C robot
+* Merge branch 'multiple-tiagos' into 'master'
+  Allow multiple Tiagos on Gazebo
+  See merge request !1
+* Allow multiple Tiagos on Gazebo
+  Refs #15402
+* Contributors: David Fernandez, Hilario Tome, Victor Lopez, davidfernandez
+
 1.0.0 (2016-09-01)
 ------------------
 
